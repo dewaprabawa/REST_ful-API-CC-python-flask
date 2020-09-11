@@ -1,9 +1,13 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-
+from flask_jwt import JWT
+from .security import authenticate, identity
 
 app = Flask(__name__)
-api = Api(app)
+app.config['SECRET_KEY'] = 'super-secret'
+api = Api(app, authenticate, identity)
+
+jwt = JWT(app,)
 
 items = []
 
@@ -14,7 +18,7 @@ class Item(Resource):
     
     def post(self,name):
         if next(filter(lambda x:x["name"] == name,items),None):
-            return {"message":"An item with name '{}' already existed".format(name)}
+            return {"message":"An item with name '{}' already existed".format(name)},400
             
         data = request.get_json()
         item = {"name":name, "price":data["price"]}

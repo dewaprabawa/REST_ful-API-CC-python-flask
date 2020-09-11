@@ -44,6 +44,28 @@
         }
     },
     {
+        "label": "JWT",
+        "importPath": "flask_jwt",
+        "description": "flask_jwt",
+        "isExtraImport": true,
+        "detail": "flask_jwt",
+        "documentation": {
+            "value": "\n```python\nimport flask_jwt\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "safe_str_cmp",
+        "importPath": "werkzeug.security",
+        "description": "werkzeug.security",
+        "isExtraImport": true,
+        "detail": "werkzeug.security",
+        "documentation": {
+            "value": "\n```python\nimport werkzeug.security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -2369,10 +2391,10 @@
         "kind": 6,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "class Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)",
+        "peekOfCode": "class Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)\n```\n",
+            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2393,10 +2415,22 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "app = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app, authenticate, identity)\njwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n```\n",
+            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app, authenticate, identity)\njwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.config['SECRET_KEY']",
+        "kind": 5,
+        "importPath": "code.app",
+        "description": "code.app",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'super-secret'\napi = Api(app, authenticate, identity)\njwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):",
+        "detail": "code.app",
+        "documentation": {
+            "value": "\n```python\nfrom code.app import app.config['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app, authenticate, identity)\njwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2405,10 +2439,22 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "api = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()",
+        "peekOfCode": "api = Api(app, authenticate, identity)\njwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n```\n",
+            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app, authenticate, identity)\njwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "jwt",
+        "kind": 5,
+        "importPath": "code.app",
+        "description": "code.app",
+        "peekOfCode": "jwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()",
+        "detail": "code.app",
+        "documentation": {
+            "value": "\n```python\nfrom code.app import jwt\n```\n\n```python\n\n\n```\n\n```python\njwt = JWT(app,)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2417,10 +2463,82 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "items = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}",
+        "peekOfCode": "items = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n```\n",
+            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "code.security",
+        "description": "code.security",
+        "peekOfCode": "class User(object):\n    def __init__(self,_id, username, password):\n        self._id = id\n        self.username = username\n        self.password = password\n    def __str__(self):\n        return \"User(id='%s')\" % self._id\nusers = [\n    User(1,'bob','asdf')\n]",
+        "detail": "code.security",
+        "documentation": {
+            "value": "\n```python\nfrom code.security import User\n```\n\n```python\n\n\n```\n\n```python\nclass User(object):\n    def __init__(self,_id, username, password):\n        self._id = id\n        self.username = username\n        self.password = password\n    def __str__(self):\n        return \"User(id='%s')\" % self._id\nusers = [\n    User(1,'bob','asdf')\n]\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "authenticate",
+        "kind": 2,
+        "importPath": "code.security",
+        "description": "code.security",
+        "peekOfCode": "def authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
+        "detail": "code.security",
+        "documentation": {
+            "value": "\n```python\nfrom code.security import authenticate\n```\n\n```python\n\n\n```\n\n```python\ndef authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "identity",
+        "kind": 2,
+        "importPath": "code.security",
+        "description": "code.security",
+        "peekOfCode": "def identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
+        "detail": "code.security",
+        "documentation": {
+            "value": "\n```python\nfrom code.security import identity\n```\n\n```python\n\n\n```\n\n```python\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "users",
+        "kind": 5,
+        "importPath": "code.security",
+        "description": "code.security",
+        "peekOfCode": "users = [\n    User(1,'bob','asdf')\n]\nusername_mapping = {u.username:u for u in users}\nuserid_mapping = {u.id:u for u in users}\ndef authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):",
+        "detail": "code.security",
+        "documentation": {
+            "value": "\n```python\nfrom code.security import users\n```\n\n```python\n\n\n```\n\n```python\nusers = [\n    User(1,'bob','asdf')\n]\nusername_mapping = {u.username:u for u in users}\nuserid_mapping = {u.id:u for u in users}\ndef authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "username_mapping",
+        "kind": 5,
+        "importPath": "code.security",
+        "description": "code.security",
+        "peekOfCode": "username_mapping = {u.username:u for u in users}\nuserid_mapping = {u.id:u for u in users}\ndef authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
+        "detail": "code.security",
+        "documentation": {
+            "value": "\n```python\nfrom code.security import username_mapping\n```\n\n```python\n\n\n```\n\n```python\nusername_mapping = {u.username:u for u in users}\nuserid_mapping = {u.id:u for u in users}\ndef authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "userid_mapping",
+        "kind": 5,
+        "importPath": "code.security",
+        "description": "code.security",
+        "peekOfCode": "userid_mapping = {u.id:u for u in users}\ndef authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
+        "detail": "code.security",
+        "documentation": {
+            "value": "\n```python\nfrom code.security import userid_mapping\n```\n\n```python\n\n\n```\n\n```python\nuserid_mapping = {u.id:u for u in users}\ndef authenticate(username, password):\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
             "supportThemeIcons": false
         }
     },
