@@ -11,6 +11,17 @@
         }
     },
     {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {
+            "value": "\n```python\nimport flask\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "Resource",
         "importPath": "flask_restful",
         "description": "flask_restful",
@@ -2358,10 +2369,22 @@
         "kind": 6,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "class Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):\n        item = {\"name\":name, \"price\":20.0}\n        items.append(item)\n        return item, 201",
+        "peekOfCode": "class Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):\n        item = {\"name\":name, \"price\":20.0}\n        items.append(item)\n        return item, 201\n```\n",
+            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "ItemList",
+        "kind": 6,
+        "importPath": "code.app",
+        "description": "code.app",
+        "peekOfCode": "class ItemList(Resource):\n    def get(self):\n        return {\"items\":items}\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000)",
+        "detail": "code.app",
+        "documentation": {
+            "value": "\n```python\nfrom code.app import ItemList\n```\n\n```python\n\n\n```\n\n```python\nclass ItemList(Resource):\n    def get(self):\n        return {\"items\":items}\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2370,10 +2393,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "app = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):",
+        "peekOfCode": "app = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):\n```\n",
+            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2382,10 +2405,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "api = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):\n        item = {\"name\":name, \"price\":20.0}",
+        "peekOfCode": "api = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):\n        item = {\"name\":name, \"price\":20.0}\n```\n",
+            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2394,10 +2417,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "items = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):\n        item = {\"name\":name, \"price\":20.0}\n        items.append(item)",
+        "peekOfCode": "items = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n            return {\"item\":None}, 404\n    def post(self,name):\n        item = {\"name\":name, \"price\":20.0}\n        items.append(item)\n```\n",
+            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n```\n",
             "supportThemeIcons": false
         }
     },
