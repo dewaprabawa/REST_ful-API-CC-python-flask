@@ -2369,10 +2369,10 @@
         "kind": 6,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "class Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)",
+        "peekOfCode": "class Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)\n```\n",
+            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n        items.append(item)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2393,10 +2393,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "app = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):",
+        "peekOfCode": "app = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n```\n",
+            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2405,10 +2405,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "api = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()",
+        "peekOfCode": "api = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n```\n",
+            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app)\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2417,10 +2417,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "items = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}",
+        "peekOfCode": "items = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        for item in items:\n            if item[\"name\"] == name:\n                return item\n        return {\"item\":None}, 404\n    def post(self,name):\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n```\n",
+            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)}\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n```\n",
             "supportThemeIcons": false
         }
     },
