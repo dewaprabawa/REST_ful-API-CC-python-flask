@@ -1,13 +1,13 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_jwt import JWT
-from .security import authenticate, identity
+from security import authenticate, identity
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret'
-api = Api(app, authenticate, identity)
+api = Api(app)
 
-jwt = JWT(app,)
+jwt = JWT(app,authenticate, identity)
 
 items = []
 
@@ -34,4 +34,5 @@ class ItemList(Resource):
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(ItemList,"/items")
 
-app.run(port=5000)
+app.run(port=5000,debug=True)
+

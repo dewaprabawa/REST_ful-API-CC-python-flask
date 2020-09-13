@@ -14,7 +14,7 @@ users = [
 ]
 
 username_mapping = {u.username:u for u in users}
-userid_mapping = {u.id:u for u in users}
+userid_mapping = {u._id:u for u in users}
 
 
 def authenticate(username, password):
