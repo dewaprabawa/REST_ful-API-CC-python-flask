@@ -3,8 +3,6 @@ from flask_restful import Resource, Api
 from flask_jwt import JWT, jwt_required, current_identity
 from werkzeug.security import safe_str_cmp
 
-
-
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret'
 api = Api(app)
@@ -60,9 +58,9 @@ def identity(payload):
     return userid_mapping.get(user_id, None)
 
 
-@app.route('/auth')
+@app.route('/protected')
 @jwt_required()
-def auth():
+def protected():
     return '%s' % current_identity
 
 

@@ -2449,10 +2449,10 @@
         "kind": 2,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "def authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/auth')\n@jwt_required()",
+        "peekOfCode": "def authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/protected')\n@jwt_required()",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import authenticate\n```\n\n```python\n\n\n```\n\n```python\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/auth')\n@jwt_required()\n```\n",
+            "value": "\n```python\nfrom code.app import authenticate\n```\n\n```python\n\n\n```\n\n```python\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/protected')\n@jwt_required()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2461,22 +2461,22 @@
         "kind": 2,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "def identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/auth')\n@jwt_required()\ndef auth():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")",
+        "peekOfCode": "def identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/protected')\n@jwt_required()\ndef protected():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import identity\n```\n\n```python\n\n\n```\n\n```python\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/auth')\n@jwt_required()\ndef auth():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\n```\n",
+            "value": "\n```python\nfrom code.app import identity\n```\n\n```python\n\n\n```\n\n```python\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/protected')\n@jwt_required()\ndef protected():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\n```\n",
             "supportThemeIcons": false
         }
     },
     {
-        "label": "auth",
+        "label": "protected",
         "kind": 2,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "def auth():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)",
+        "peekOfCode": "def protected():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import auth\n```\n\n```python\n\n\n```\n\n```python\ndef auth():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)\n```\n",
+            "value": "\n```python\nfrom code.app import protected\n```\n\n```python\n\n\n```\n\n```python\ndef protected():\n    return '%s' % current_identity\njwt = JWT(app,authenticate, identity)\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2557,10 +2557,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "userid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/auth')",
+        "peekOfCode": "userid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/protected')",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import userid_mapping\n```\n\n```python\n\n\n```\n\n```python\nuserid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/auth')\n```\n",
+            "value": "\n```python\nfrom code.app import userid_mapping\n```\n\n```python\n\n\n```\n\n```python\nuserid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n@app.route('/protected')\n```\n",
             "supportThemeIcons": false
         }
     },
