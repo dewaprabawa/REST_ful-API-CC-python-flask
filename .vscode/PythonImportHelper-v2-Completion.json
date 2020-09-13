@@ -44,6 +44,17 @@
         }
     },
     {
+        "label": "reqparse",
+        "importPath": "flask_restful",
+        "description": "flask_restful",
+        "isExtraImport": true,
+        "detail": "flask_restful",
+        "documentation": {
+            "value": "\n```python\nimport flask_restful\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "JWT",
         "importPath": "flask_jwt",
         "description": "flask_jwt",
@@ -73,18 +84,6 @@
         "detail": "flask_jwt",
         "documentation": {
             "value": "\n```python\nimport flask_jwt\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "re",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "re",
-        "description": "re",
-        "detail": "re",
-        "documentation": {
-            "value": "\n```python\nimport re\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -1116,6 +1115,18 @@
         "detail": "abc",
         "documentation": {
             "value": "\n```python\nimport abc\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {
+            "value": "\n```python\nimport re\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2435,10 +2446,10 @@
         "kind": 6,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "class Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}",
+        "peekOfCode": "class Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n        item = {\"name\":name, \"price\":data[\"price\"]}\n```\n",
+            "value": "\n```python\nfrom code.app import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2471,10 +2482,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "app = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n```\n",
+            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2483,10 +2494,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "app.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import app.config['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n```\n",
+            "value": "\n```python\nfrom code.app import app.config['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2495,10 +2506,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "api = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):",
+        "peekOfCode": "api = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n```\n",
+            "value": "\n```python\nfrom code.app import api\n```\n\n```python\n\n\n```\n\n```python\napi = Api(app)\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2507,10 +2518,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "jwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400",
+        "peekOfCode": "jwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import jwt\n```\n\n```python\n\n\n```\n\n```python\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n```\n",
+            "value": "\n```python\nfrom code.app import jwt\n```\n\n```python\n\n\n```\n\n```python\njwt = JWT(app,authenticate, identity)\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2519,10 +2530,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "items = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()",
+        "peekOfCode": "items = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n            return {\"message\":\"An item with name '{}' already existed\".format(name)},400\n        data = request.get_json()\n```\n",
+            "value": "\n```python\nfrom code.app import items\n```\n\n```python\n\n\n```\n\n```python\nitems = []\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = next(filter(lambda x:x[\"name\"] == name, items), None)\n        return {\"item\":item}, 200 if item else 404 #200 if item is not None else 404\n    def post(self,name):\n        if next(filter(lambda x:x[\"name\"] == name,items),None):\n```\n",
             "supportThemeIcons": false
         }
     },
