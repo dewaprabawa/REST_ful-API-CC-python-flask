@@ -55,6 +55,28 @@
         }
     },
     {
+        "label": "Resource",
+        "importPath": "flask_restful",
+        "description": "flask_restful",
+        "isExtraImport": true,
+        "detail": "flask_restful",
+        "documentation": {
+            "value": "\n```python\nimport flask_restful\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "reqparse",
+        "importPath": "flask_restful",
+        "description": "flask_restful",
+        "isExtraImport": true,
+        "detail": "flask_restful",
+        "documentation": {
+            "value": "\n```python\nimport flask_restful\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "JWT",
         "importPath": "flask_jwt",
         "description": "flask_jwt",
@@ -106,6 +128,29 @@
         "detail": "security",
         "documentation": {
             "value": "\n```python\nimport security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "UserRegister",
+        "importPath": "security",
+        "description": "security",
+        "isExtraImport": true,
+        "detail": "security",
+        "documentation": {
+            "value": "\n```python\nimport security\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "sqlite3",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlite3",
+        "description": "sqlite3",
+        "detail": "sqlite3",
+        "documentation": {
+            "value": "\n```python\nimport sqlite3\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2458,10 +2503,10 @@
         "kind": 6,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "class ItemList(Resource):\n    def get(self):\n        return {\"items\":items}\n@app.route('/protected')\n@jwt_required()\ndef protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)",
+        "peekOfCode": "class ItemList(Resource):\n    def get(self):\n        return {\"items\":items}\n@app.route('/protected')\n@jwt_required()\ndef protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import ItemList\n```\n\n```python\n\n\n```\n\n```python\nclass ItemList(Resource):\n    def get(self):\n        return {\"items\":items}\n@app.route('/protected')\n@jwt_required()\ndef protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)\n```\n",
+            "value": "\n```python\nfrom code.app import ItemList\n```\n\n```python\n\n\n```\n\n```python\nclass ItemList(Resource):\n    def get(self):\n        return {\"items\":items}\n@app.route('/protected')\n@jwt_required()\ndef protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2470,10 +2515,10 @@
         "kind": 2,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "def protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)",
+        "peekOfCode": "def protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\napp.run(port=5000,debug=True)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import protected\n```\n\n```python\n\n\n```\n\n```python\ndef protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napp.run(port=5000,debug=True)\n```\n",
+            "value": "\n```python\nfrom code.app import protected\n```\n\n```python\n\n\n```\n\n```python\ndef protected():\n    return '%s' % current_identity\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\napp.run(port=5000,debug=True)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2538,14 +2583,62 @@
         }
     },
     {
+        "label": "connection",
+        "kind": 5,
+        "importPath": "code.create_table",
+        "description": "code.create_table",
+        "peekOfCode": "connection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()",
+        "detail": "code.create_table",
+        "documentation": {
+            "value": "\n```python\nfrom code.create_table import connection\n```\n\n```python\n\n\n```\n\n```python\nconnection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "cursor",
+        "kind": 5,
+        "importPath": "code.create_table",
+        "description": "code.create_table",
+        "peekOfCode": "cursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()",
+        "detail": "code.create_table",
+        "documentation": {
+            "value": "\n```python\nfrom code.create_table import cursor\n```\n\n```python\n\n\n```\n\n```python\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "create_table",
+        "kind": 5,
+        "importPath": "code.create_table",
+        "description": "code.create_table",
+        "peekOfCode": "create_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()",
+        "detail": "code.create_table",
+        "documentation": {
+            "value": "\n```python\nfrom code.create_table import create_table\n```\n\n```python\n\n\n```\n\n```python\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
         "label": "User",
         "kind": 6,
         "importPath": "code.security",
         "description": "code.security",
-        "peekOfCode": "class User(object):\n    def __init__(self,_id, username, password):\n        self._id = id\n        self.username = username\n        self.password = password\n    def __str__(self):\n        return \"User(id='%s')\" % self._id\nusers = [\n    User(1,\"bob\",\"asdf\")\n]",
+        "peekOfCode": "class User(object):\n    TABLE_NAME = 'users'\n    def __init__(self,_id, username, password):\n        self._id = id\n        self.username = username\n        self.password = password\n    @classmethod   \n    def find_by_username(cls,username):\n        connection = sqlite3.connect(\"data.db\")\n        cursor = connection.cursor()",
         "detail": "code.security",
         "documentation": {
-            "value": "\n```python\nfrom code.security import User\n```\n\n```python\n\n\n```\n\n```python\nclass User(object):\n    def __init__(self,_id, username, password):\n        self._id = id\n        self.username = username\n        self.password = password\n    def __str__(self):\n        return \"User(id='%s')\" % self._id\nusers = [\n    User(1,\"bob\",\"asdf\")\n]\n```\n",
+            "value": "\n```python\nfrom code.security import User\n```\n\n```python\n\n\n```\n\n```python\nclass User(object):\n    TABLE_NAME = 'users'\n    def __init__(self,_id, username, password):\n        self._id = id\n        self.username = username\n        self.password = password\n    @classmethod   \n    def find_by_username(cls,username):\n        connection = sqlite3.connect(\"data.db\")\n        cursor = connection.cursor()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "UserRegister",
+        "kind": 6,
+        "importPath": "code.security",
+        "description": "code.security",
+        "peekOfCode": "class UserRegister(Resource):\n    TABLE_NAME = \"users\"\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"username\",type=str,required=True,help=\"This field cannot be left black!\")\n    def post(self):\n        data = UserRegister.parser.parse_args()\n        if User.find_by_username(data[\"username\"]):\n            return {\"message\":\"User with that username already exist\"},400\n        connection = sqlite3.connect('data.db')\n        cursor = connection.cursor()",
+        "detail": "code.security",
+        "documentation": {
+            "value": "\n```python\nfrom code.security import UserRegister\n```\n\n```python\n\n\n```\n\n```python\nclass UserRegister(Resource):\n    TABLE_NAME = \"users\"\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"username\",type=str,required=True,help=\"This field cannot be left black!\")\n    def post(self):\n        data = UserRegister.parser.parse_args()\n        if User.find_by_username(data[\"username\"]):\n            return {\"message\":\"User with that username already exist\"},400\n        connection = sqlite3.connect('data.db')\n        cursor = connection.cursor()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2554,10 +2647,10 @@
         "kind": 2,
         "importPath": "code.security",
         "description": "code.security",
-        "peekOfCode": "def authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
+        "peekOfCode": "def authenticate(username, password):\n    user = User.find_by_username(username)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return User.find_by_id(user_id)",
         "detail": "code.security",
         "documentation": {
-            "value": "\n```python\nfrom code.security import authenticate\n```\n\n```python\n\n\n```\n\n```python\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
+            "value": "\n```python\nfrom code.security import authenticate\n```\n\n```python\n\n\n```\n\n```python\ndef authenticate(username, password):\n    user = User.find_by_username(username)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return User.find_by_id(user_id)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2566,46 +2659,10 @@
         "kind": 2,
         "importPath": "code.security",
         "description": "code.security",
-        "peekOfCode": "def identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
+        "peekOfCode": "def identity(payload):\n    user_id = payload['identity']\n    return User.find_by_id(user_id)",
         "detail": "code.security",
         "documentation": {
-            "value": "\n```python\nfrom code.security import identity\n```\n\n```python\n\n\n```\n\n```python\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "users",
-        "kind": 5,
-        "importPath": "code.security",
-        "description": "code.security",
-        "peekOfCode": "users = [\n    User(1,\"bob\",\"asdf\")\n]\nusername_mapping = {u.username:u for u in users}\nuserid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user",
-        "detail": "code.security",
-        "documentation": {
-            "value": "\n```python\nfrom code.security import users\n```\n\n```python\n\n\n```\n\n```python\nusers = [\n    User(1,\"bob\",\"asdf\")\n]\nusername_mapping = {u.username:u for u in users}\nuserid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "username_mapping",
-        "kind": 5,
-        "importPath": "code.security",
-        "description": "code.security",
-        "peekOfCode": "username_mapping = {u.username:u for u in users}\nuserid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
-        "detail": "code.security",
-        "documentation": {
-            "value": "\n```python\nfrom code.security import username_mapping\n```\n\n```python\n\n\n```\n\n```python\nusername_mapping = {u.username:u for u in users}\nuserid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
-            "supportThemeIcons": false
-        }
-    },
-    {
-        "label": "userid_mapping",
-        "kind": 5,
-        "importPath": "code.security",
-        "description": "code.security",
-        "peekOfCode": "userid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)",
-        "detail": "code.security",
-        "documentation": {
-            "value": "\n```python\nfrom code.security import userid_mapping\n```\n\n```python\n\n\n```\n\n```python\nuserid_mapping = {u._id:u for u in users}\ndef authenticate(username, password):\n    print(username_mapping)\n    user = userid_mapping.get(username,None)\n    if user and safe_str_cmp(user.password('utf-8'),password.encode('utf-8')):\n        return user\ndef identity(payload):\n    user_id = payload['identity']\n    return userid_mapping.get(user_id, None)\n```\n",
+            "value": "\n```python\nfrom code.security import identity\n```\n\n```python\n\n\n```\n\n```python\ndef identity(payload):\n    user_id = payload['identity']\n    return User.find_by_id(user_id)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -27782,6 +27839,90 @@
         "detail": "venv.lib.python3.8.weakref",
         "documentation": {
             "value": "\n```python\nfrom venv.lib.python3.8.weakref import __all__\n```\n\n```python\n\n\n```\n\n```python\n__all__ = [\"ref\", \"proxy\", \"getweakrefcount\", \"getweakrefs\",\n           \"WeakKeyDictionary\", \"ReferenceType\", \"ProxyType\",\n           \"CallableProxyType\", \"ProxyTypes\", \"WeakValueDictionary\",\n           \"WeakSet\", \"WeakMethod\", \"finalize\"]\nclass WeakMethod(ref):\n    \"\"\"\n    A custom `weakref.ref` subclass which simulates a weak reference to\n    a bound method, working around the lifetime problem of bound methods.\n    \"\"\"\n    __slots__ = \"_func_ref\", \"_meth_type\", \"_alive\", \"__weakref__\"\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "connection",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "connection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE users (id int, username text, password text)\"\ncursor.execute(create_table)\nuser = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")",
+        "detail": "test",
+        "documentation": {
+            "value": "\n```python\nfrom test import connection\n```\n\n```python\n\n\n```\n\n```python\nconnection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE users (id int, username text, password text)\"\ncursor.execute(create_table)\nuser = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "cursor",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "cursor = connection.cursor()\ncreate_table = \"CREATE TABLE users (id int, username text, password text)\"\ncursor.execute(create_table)\nuser = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]",
+        "detail": "test",
+        "documentation": {
+            "value": "\n```python\nfrom test import cursor\n```\n\n```python\n\n\n```\n\n```python\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE users (id int, username text, password text)\"\ncursor.execute(create_table)\nuser = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "create_table",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "create_table = \"CREATE TABLE users (id int, username text, password text)\"\ncursor.execute(create_table)\nuser = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)",
+        "detail": "test",
+        "documentation": {
+            "value": "\n```python\nfrom test import create_table\n```\n\n```python\n\n\n```\n\n```python\ncreate_table = \"CREATE TABLE users (id int, username text, password text)\"\ncursor.execute(create_table)\nuser = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "user",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "user = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)\nselect_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):",
+        "detail": "test",
+        "documentation": {
+            "value": "\n```python\nfrom test import user\n```\n\n```python\n\n\n```\n\n```python\nuser = (1,\"jose\",\"asdf\")\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)\nselect_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "insert_query",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "insert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)\nselect_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):\n    print(row)",
+        "detail": "test",
+        "documentation": {
+            "value": "\n```python\nfrom test import insert_query\n```\n\n```python\n\n\n```\n\n```python\ninsert_query = \"INSERT INTO users VALUES (?,?,?)\"\ncursor.execute(insert_query,user)\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)\nselect_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):\n    print(row)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "users",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "users = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)\nselect_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):\n    print(row)\nconnection.commit()\nconnection.close()",
+        "detail": "test",
+        "documentation": {
+            "value": "\n```python\nfrom test import users\n```\n\n```python\n\n\n```\n\n```python\nusers = [\n    (2,\"rofl\",\"asdf\"),\n    (2,\"anne\",\"xyz\")\n]\ncursor.executemany(insert_query, users)\nselect_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):\n    print(row)\nconnection.commit()\nconnection.close()\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "select_query",
+        "kind": 5,
+        "importPath": "test",
+        "description": "test",
+        "peekOfCode": "select_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):\n    print(row)\nconnection.commit()\nconnection.close()",
+        "detail": "test",
+        "documentation": {
+            "value": "\n```python\nfrom test import select_query\n```\n\n```python\n\n\n```\n\n```python\nselect_query = \"SELECT * FROM users\"\nfor row in cursor.execute(select_query):\n    print(row)\nconnection.commit()\nconnection.close()\n```\n",
             "supportThemeIcons": false
         }
     }
