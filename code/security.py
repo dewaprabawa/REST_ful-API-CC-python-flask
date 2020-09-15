@@ -48,7 +48,8 @@ class UserRegister(Resource):
     TABLE_NAME = "users"
     
     parser = reqparse.RequestParser()
-    parser.add_argument("username",type=str,required=True,help="This field cannot be left black!")
+    parser.add_argument("username",type=str,required=True,help="This field cannot be left blank!")
+    parser.add_argument("password",type=str,required=True,help="This field cannot be left blank!")
     
     def post(self):
         data = UserRegister.parser.parse_args()
@@ -64,7 +65,7 @@ class UserRegister(Resource):
         connection.commit()
         connection.close()
         
-        return {"message":"User created successfully"},201
+        return {"message":"User created successfully"}, 201
         
 
 def authenticate(username, password):
