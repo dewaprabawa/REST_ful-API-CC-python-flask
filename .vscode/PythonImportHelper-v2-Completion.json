@@ -2436,10 +2436,10 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "app = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napp.secret_key = \"ddqq\"\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)\n```\n",
+            "value": "\n```python\nfrom code.app import app\n```\n\n```python\n\n\n```\n\n```python\napp = Flask(__name__)\napp.config['SECRET_KEY'] = 'super-secret'\napp.secret_key = \"ddqq\"\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2448,10 +2448,22 @@
         "kind": 5,
         "importPath": "code.app",
         "description": "code.app",
-        "peekOfCode": "app.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'super-secret'\napp.secret_key = \"ddqq\"\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)",
         "detail": "code.app",
         "documentation": {
-            "value": "\n```python\nfrom code.app import app.config['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\napp.config['SECRET_KEY'] = 'super-secret'\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)\n```\n",
+            "value": "\n```python\nfrom code.app import app.config['SECRET_KEY']\n```\n\n```python\n\n\n```\n\n```python\napp.config['SECRET_KEY'] = 'super-secret'\napp.secret_key = \"ddqq\"\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)\n```\n",
+            "supportThemeIcons": false
+        }
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "code.app",
+        "description": "code.app",
+        "peekOfCode": "app.secret_key = \"ddqq\"\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)",
+        "detail": "code.app",
+        "documentation": {
+            "value": "\n```python\nfrom code.app import app.secret_key\n```\n\n```python\n\n\n```\n\n```python\napp.secret_key = \"ddqq\"\napi = Api(app)\njwt = JWT(app,authenticate, identity) #/auth\napi.add_resource(Item, \"/item/<string:name>\")\napi.add_resource(ItemList,\"/items\")\napi.add_resource(UserRegister,\"/register\")\nif __name__ == \"__main__\":\n    app.run(port=5000,debug=True)\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2484,10 +2496,10 @@
         "kind": 5,
         "importPath": "code.create_table",
         "description": "code.create_table",
-        "peekOfCode": "connection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()",
+        "peekOfCode": "connection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()",
         "detail": "code.create_table",
         "documentation": {
-            "value": "\n```python\nfrom code.create_table import connection\n```\n\n```python\n\n\n```\n\n```python\nconnection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()\n```\n",
+            "value": "\n```python\nfrom code.create_table import connection\n```\n\n```python\n\n\n```\n\n```python\nconnection = sqlite3.connect(\"data.db\")\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2496,10 +2508,10 @@
         "kind": 5,
         "importPath": "code.create_table",
         "description": "code.create_table",
-        "peekOfCode": "cursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()",
+        "peekOfCode": "cursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()",
         "detail": "code.create_table",
         "documentation": {
-            "value": "\n```python\nfrom code.create_table import cursor\n```\n\n```python\n\n\n```\n\n```python\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()\n```\n",
+            "value": "\n```python\nfrom code.create_table import cursor\n```\n\n```python\n\n\n```\n\n```python\ncursor = connection.cursor()\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2508,10 +2520,10 @@
         "kind": 5,
         "importPath": "code.create_table",
         "description": "code.create_table",
-        "peekOfCode": "create_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()",
+        "peekOfCode": "create_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()",
         "detail": "code.create_table",
         "documentation": {
-            "value": "\n```python\nfrom code.create_table import create_table\n```\n\n```python\n\n\n```\n\n```python\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()\n```\n",
+            "value": "\n```python\nfrom code.create_table import create_table\n```\n\n```python\n\n\n```\n\n```python\ncreate_table = \"CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username text, password text)\"\ncursor.execute(create_table)\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2520,10 +2532,10 @@
         "kind": 5,
         "importPath": "code.create_table",
         "description": "code.create_table",
-        "peekOfCode": "create_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()",
+        "peekOfCode": "create_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()",
         "detail": "code.create_table",
         "documentation": {
-            "value": "\n```python\nfrom code.create_table import create_table\n```\n\n```python\n\n\n```\n\n```python\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text, price real)\"\ncursor.execute(create_table)\ncursor.execute(\"INSERT INTO items VALUES ('test',10.99)\")\nconnection.commit()\nconnection.close()\n```\n",
+            "value": "\n```python\nfrom code.create_table import create_table\n```\n\n```python\n\n\n```\n\n```python\ncreate_table = \"CREATE TABLE IF NOT EXISTS items (name text PRIMARY KEY, price real)\"\ncursor.execute(create_table)\nconnection.commit()\nconnection.close()\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2532,10 +2544,10 @@
         "kind": 6,
         "importPath": "code.item",
         "description": "code.item",
-        "peekOfCode": "class Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = self.find_by_name(name)\n        if item: \n            return item\n        return {\"message\":\"item not found\"},404\n    @classmethod",
+        "peekOfCode": "class Item(Resource):\n    TABLE_NAME = \"items\"\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = self.find_by_name(name)\n        if item: \n            return item\n        return {\"message\":\"item not found\"},404",
         "detail": "code.item",
         "documentation": {
-            "value": "\n```python\nfrom code.item import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = self.find_by_name(name)\n        if item: \n            return item\n        return {\"message\":\"item not found\"},404\n    @classmethod\n```\n",
+            "value": "\n```python\nfrom code.item import Item\n```\n\n```python\n\n\n```\n\n```python\nclass Item(Resource):\n    TABLE_NAME = \"items\"\n    parser = reqparse.RequestParser()\n    parser.add_argument(\"price\",type=float, required=True, help=\"This field can not be left blank!\")\n    @jwt_required\n    def get(self, name):\n        item = self.find_by_name(name)\n        if item: \n            return item\n        return {\"message\":\"item not found\"},404\n```\n",
             "supportThemeIcons": false
         }
     },
@@ -2544,10 +2556,10 @@
         "kind": 6,
         "importPath": "code.item",
         "description": "code.item",
-        "peekOfCode": "class ItemList(Resource):\n    def get(self):\n        return {\"items\":items}",
+        "peekOfCode": "class ItemList(Resource):\n    TABLE_NAME = \"items\"\n    def get(self):\n        connection = sqlite3.connect(\"data.db\")\n        cursor = connection.cursor()\n        query = \"SELECT * FROM items\"\n        result = cursor.execute(query)\n        items = []\n        for row in result:\n            items.append({\"name\":row[0],\"price\":row[1]})",
         "detail": "code.item",
         "documentation": {
-            "value": "\n```python\nfrom code.item import ItemList\n```\n\n```python\n\n\n```\n\n```python\nclass ItemList(Resource):\n    def get(self):\n        return {\"items\":items}\n```\n",
+            "value": "\n```python\nfrom code.item import ItemList\n```\n\n```python\n\n\n```\n\n```python\nclass ItemList(Resource):\n    TABLE_NAME = \"items\"\n    def get(self):\n        connection = sqlite3.connect(\"data.db\")\n        cursor = connection.cursor()\n        query = \"SELECT * FROM items\"\n        result = cursor.execute(query)\n        items = []\n        for row in result:\n            items.append({\"name\":row[0],\"price\":row[1]})\n```\n",
             "supportThemeIcons": false
         }
     },

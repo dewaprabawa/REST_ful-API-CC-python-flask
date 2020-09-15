@@ -1,11 +1,13 @@
 from flask import Flask
 from flask_restful import Api
 from flask_jwt import JWT
+
 from .security import authenticate, identity, UserRegister
 from .item import Item,ItemList
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'super-secret'
+app.secret_key = "ddqq"
 api = Api(app)
 
 jwt = JWT(app,authenticate, identity) #/auth

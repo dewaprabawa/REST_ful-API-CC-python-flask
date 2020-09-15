@@ -3,6 +3,8 @@ from flask_jwt import jwt_required
 import sqlite3
 
 class Item(Resource):
+    TABLE_NAME = "items"
+    
     parser = reqparse.RequestParser()
     parser.add_argument("price",type=float, required=True, help="This field can not be left blank!")
     
@@ -24,7 +26,7 @@ class Item(Resource):
         if row:
             return {"item":{"name":row[0],"price":row[1]}}
         
-    
+    @jwt_required
     def post(self,name):
         if self.find_by_name(name):
             return {"message":"An item with name '{}' already existed".format(name)},400
@@ -48,7 +50,8 @@ class Item(Resource):
         
         connection.commit()
         connection.close()
-    
+        
+    @jwt_required
     def delete(self,name):
         #global items
         #items = list(filter(lambda x:x["name"] != name,items))
@@ -56,7 +59,7 @@ class Item(Resource):
         connection = sqlite3.connect("data.db")
         cursor = connection.cursor()
         
-        query = "DELETE FROM items WHERE name=?"
+        query = "DELETE FROM items WHERE name=?".format(table=self.TABLE_NAME)
         cursor.execute(query,(name,))
         
         connection.commit()
@@ -64,7 +67,7 @@ class Item(Resource):
         
         return {"items":"item named '{}' has deleted".format(name)}
        
-       
+    @jwt_required   
     def put(self,name):
         data = Item.parser.parse_args()
         item = self.find_by_name(name)
@@ -88,7 +91,7 @@ class Item(Resource):
         connection = sqlite3.connect("data.db")
         cursor = connection.cursor()
         
-        query = "UPDATE items price=? WHERE name=?"
+        query = "UPDATE items price=? WHERE name=?".format(table=cls.TABLE_NAME)
         cursor.execute(query,(item["price"],item["name"]))
         
         connection.commit()
@@ -96,6 +99,19 @@ class Item(Resource):
         
 
 class ItemList(Resource):
+    TABLE_NAME = "items"
+    
     def get(self):
+        connection = sqlite3.connect("data.db")
+        cursor = connection.cursor()
+        
+        query = "SELECT * FROM items"
+        result = cursor.execute(query)
+        items = []
+        for row in result:
+            items.append({"name":row[0],"price":row[1]})
+        
+        connection.close()        
+        
         return {"items":items}
 
